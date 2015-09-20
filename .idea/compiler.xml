@@ -24,8 +24,16 @@
         <processorPath useClasspath="true" />
         <module name="springioc.hello" />
       </profile>
+      <profile default="false" name="Annotation profile for Lektion01" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Lektion01" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Lektion01" target="1.6" />
       <module name="springioc.hello" target="1.6" />
     </bytecodeTargetLevel>
   </component>

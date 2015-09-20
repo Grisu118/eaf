@@ -1,7 +1,11 @@
 package edu.spring;
 
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.PropertyOverrideConfigurer;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -10,14 +14,15 @@ import org.springframework.core.io.ClassPathResource;
 public class DecoupledHelloWorldWithSpring {
 
     public static void main(String[] args) {
-        BeanFactory factory = getBeanFactory();
-        MessageRenderer mr = (MessageRenderer) factory.getBean("renderer");
+
+        ApplicationContext c = getContext();
+        MessageRenderer mr = (MessageRenderer) c.getBean("renderer");
         mr.render();
     }
-
-    private static BeanFactory getBeanFactory() {
-        XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("/spring/helloConfig.xml"));
-        return factory;
+    private static ConfigurableApplicationContext  getContext() {
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("/spring/helloConfig.xml");
+        context.refresh();
+        return context;
     }
 }
 
