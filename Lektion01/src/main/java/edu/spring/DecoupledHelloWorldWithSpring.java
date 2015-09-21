@@ -20,9 +20,7 @@ public class DecoupledHelloWorldWithSpring {
         mr.render();
     }
     private static ConfigurableApplicationContext  getContext() {
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("/spring/helloConfig.xml");
-        context.refresh();
-        return context;
+        return new ClassPathXmlApplicationContext("/spring/helloConfig.xml");
     }
 }
 
