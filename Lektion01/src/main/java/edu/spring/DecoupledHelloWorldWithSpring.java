@@ -16,7 +16,8 @@ public class DecoupledHelloWorldWithSpring {
     public static void main(String[] args) {
 
         ApplicationContext c = getContext();
-        MessageRenderer mr = (MessageRenderer) c.getBean("renderer");
+        //MessageRenderer mr = (MessageRenderer) c.getBean("renderer");
+        MessageRenderer mr = c.getBean(StandardErrorXMLRenderer.class);
         mr.render();
     }
     private static ConfigurableApplicationContext  getContext() {

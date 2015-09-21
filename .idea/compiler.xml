@@ -31,9 +31,17 @@
         <processorPath useClasspath="true" />
         <module name="Lektion01" />
       </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Lektion02" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Lektion01" target="1.6" />
+      <module name="Lektion02" target="1.6" />
       <module name="springioc.hello" target="1.6" />
     </bytecodeTargetLevel>
   </component>

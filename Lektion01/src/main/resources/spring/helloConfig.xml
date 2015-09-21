@@ -13,4 +13,18 @@
     <bean id="provider2" class="edu.spring.ExternalizedConstructorHelloWorldMessageProvider">
         <constructor-arg name="message" value="${helloworld.message}"/>
     </bean>
+
+    <bean class="edu.spring.StandardErrorXMLRenderer">
+        <property name="messageProvider" ref="provider"/>
+    </bean>
+
+    <bean id="ClassA" class="edu.spring.zirkular.A">
+        <property name="b" ref="ClassB" />
+    </bean>
+    <bean id="ClassB" class="edu.spring.zirkular.B">
+        <property name="c" ref="ClassC" />
+    </bean>
+    <bean id="ClassC" class="edu.spring.zirkular.C">
+        <property name="a" ref="ClassA" />
+    </bean>
 </beans>
