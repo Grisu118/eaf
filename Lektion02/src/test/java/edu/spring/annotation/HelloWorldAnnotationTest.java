@@ -1,4 +1,4 @@
-package test.java.edu.spring.annotation;
+package edu.spring.annotation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

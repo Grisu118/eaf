@@ -1,17 +1,20 @@
-package test.java.edu.spring.javaconfig;
+package edu.spring.javaconfig;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import edu.spring.domain.impl.Config;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import edu.spring.domain.MessageProvider;
 import edu.spring.domain.MessageRenderer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {Config.class})
 public class HelloWorldJavaTest {
 	@Autowired
 	private MessageProvider messageProvider;

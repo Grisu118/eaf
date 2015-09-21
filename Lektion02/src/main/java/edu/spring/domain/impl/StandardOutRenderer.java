@@ -1,9 +1,13 @@
-package main.java.edu.spring.domain.impl;
+package edu.spring.domain.impl;
 
 import edu.spring.domain.MessageProvider;
 import edu.spring.domain.MessageRenderer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StandardOutRenderer implements MessageRenderer {
+    @Autowired
 	private MessageProvider messageProvider;
 
 	@Override

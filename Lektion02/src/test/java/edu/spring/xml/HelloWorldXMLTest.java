@@ -1,4 +1,4 @@
-package test.java.edu.spring.xml;
+package edu.spring.xml;
 
 import static org.junit.Assert.*;
 
