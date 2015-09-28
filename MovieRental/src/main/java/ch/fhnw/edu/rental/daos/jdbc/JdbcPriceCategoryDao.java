@@ -12,65 +12,58 @@ import ch.fhnw.edu.rental.model.PriceCategory;
 import ch.fhnw.edu.rental.model.PriceCategoryChildren;
 import ch.fhnw.edu.rental.model.PriceCategoryNewRelease;
 import ch.fhnw.edu.rental.model.PriceCategoryRegular;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-public class JdbcPriceCategoryDao implements PriceCategoryDao {
+public class JdbcPriceCategoryDao extends JdbcDaoSupport implements PriceCategoryDao {
 
-	////////////// this is an in-memory implementation => to be replaced
-	private Map<Long, PriceCategory> data = new HashMap<>();
-	{
-		PriceCategory pc = new PriceCategoryRegular();
-		pc.setId(1L);
-		data.put(1L, pc);
-		
-		pc = new PriceCategoryChildren();
-		pc.setId(2L);;
-		data.put(2L, pc);
-		
-		pc = new PriceCategoryNewRelease();
-		pc.setId(3L);;
-		data.put(3L, pc);
-	}
-	
-	@Override
-	public List<PriceCategory> getAll() {
-		return new ArrayList<PriceCategory>(data.values());
-	}
+	RowMapper<PriceCategory> get = (rs, row) -> {
+        PriceCategory r;
+        switch (rs.getString("PRICECATEGORY_TYPE")) {
+            case "Regular":
+                r = new PriceCategoryRegular();
+                break;
+            case "Children" :
+                r = new PriceCategoryChildren();
+                break;
+            case "New Release" :
+                r = new PriceCategoryNewRelease();
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown PriceCategory");
+        }
+        r.setId(rs.getLong("PRICECATEGORY_ID"));
+        return r;
+    };
 
 	@Override
 	public PriceCategory getById(Long id) {
-		return data.get(id);
-	}
-	////////////////////////////////////////////////////////////////////
-
-	@SuppressWarnings("unused")
-	private DataSource ds;
-
-	public void setDataSource(DataSource dataSource) {
-		this.ds = dataSource;
+		return getJdbcTemplate().queryForObject("SELECT * FROM PRICECATEGORIES WHERE PRICECATEGORY_ID=?;", get, id);
 	}
 
-//	@Override
-//	public PriceCategory getById(Long id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<PriceCategory> getAll() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<PriceCategory> getAll() {
+		return getJdbcTemplate().query("SELECT * FROM PRICECATEGORIES", get);
+	}
 
 	@Override
 	public void saveOrUpdate(PriceCategory priceCategory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		if (priceCategory.getId() == null) {
+            SimpleJdbcInsert i = new SimpleJdbcInsert(getJdbcTemplate());
+            i.withTableName("PRICECATEGORIES")
+                    .usingGeneratedKeyColumns("PRICECATEGORY_ID");
+            Map<String, Object> parameters = new HashMap<>(1);
+            parameters.put("PRICECATEGORY_TYPE", priceCategory.toString());
+            priceCategory.setId((Long) i.executeAndReturnKey(parameters));
+        } else {
+            getJdbcTemplate().update("UPDATE PRICECATEGORIES SET PRICECATEGORY_TYPE=? WHERE PRICECATEGORY_ID = ?;", priceCategory.toString(), priceCategory.getId());
+        }
 	}
 
 	@Override
 	public void delete(PriceCategory priceCategory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		getJdbcTemplate().update("DELETE * FROM PRICECATEGORIES WHERE PRICECATEGORY_ID = ?;", priceCategory.getId());
 	}
 
 }
