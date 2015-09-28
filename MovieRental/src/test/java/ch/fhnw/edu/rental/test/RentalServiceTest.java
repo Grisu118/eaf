@@ -1,4 +1,4 @@
-package test.java.ch.fhnw.edu.rental.test;
+package ch.fhnw.edu.rental.test;
 
 import java.util.Calendar;
 import java.util.List;

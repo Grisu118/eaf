@@ -1,4 +1,4 @@
-package test.java.ch.fhnw.edu.rental.test;
+package ch.fhnw.edu.rental.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
