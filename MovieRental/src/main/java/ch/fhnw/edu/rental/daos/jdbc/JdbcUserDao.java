@@ -73,6 +73,7 @@ public class JdbcUserDao extends JdbcDaoSupport implements UserDao {
 	public void delete(User user) {
 		if (user.getId() != null) {
             getJdbcTemplate().update("DELETE * FROM USERS WHERE USER_ID=?;", user.getId());
+            user.setId(null);
         }
 	}
 }

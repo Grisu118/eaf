@@ -27,14 +27,7 @@ public class JdbcRentalDao extends JdbcDaoSupport implements RentalDao {
 	private MovieDao movieDao;
 	private UserDao userDao;
 
-    private RowMapper<Rental> get = (rs, row) -> {
-        Rental r = new Rental(userDao.getById(rs.getLong("USER_ID")),
-                movieDao.getById(rs.getLong("MOVIE_ID")),
-                rs.getInt("RENTAL_RENTALDAYS"),
-                rs.getDate("RENTAL_RENTALDATE"));
-        r.setId(rs.getLong("MOVIE_ID"));
-        return r;
-    };
+    private RowMapper<Rental> get = (rs, row) -> createRental(rs);
 
 	public void setMovieDao(MovieDao movieDao) {
 		this.movieDao = movieDao;
@@ -81,6 +74,7 @@ public class JdbcRentalDao extends JdbcDaoSupport implements RentalDao {
 	@Override
 	public void delete(Rental rental) {
 		getJdbcTemplate().update("DELETE * FROM RENTALS WHERE RENTAL_ID=?;", rental.getId());
+		rental.setId(null);
 	}
 
 	private Rental createRental(ResultSet rs) throws SQLException {

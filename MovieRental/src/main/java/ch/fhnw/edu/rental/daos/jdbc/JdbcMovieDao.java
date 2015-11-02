@@ -14,15 +14,11 @@ import javax.sql.DataSource;
 import ch.fhnw.edu.rental.daos.MovieDao;
 import ch.fhnw.edu.rental.daos.PriceCategoryDao;
 import ch.fhnw.edu.rental.model.Movie;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-public class JdbcMovieDao implements MovieDao {
+public class JdbcMovieDao extends JdbcDaoSupport implements MovieDao {
 
-	private DataSource ds;
 	private PriceCategoryDao priceCategoryDao;
-
-	public void setDataSource(DataSource dataSource) {
-		this.ds = dataSource;
-	}
 
 	public void setPriceCategoryDao(PriceCategoryDao priceCategoryDao) {
 		this.priceCategoryDao = priceCategoryDao;
@@ -30,51 +26,14 @@ public class JdbcMovieDao implements MovieDao {
 
 	@Override
 	public Movie getById(Long id) {
-		Connection conn = null;
-		try {
-			conn = ds.getConnection();
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from MOVIES where MOVIE_ID = " + id);
-			if (rs.next()) {
-				return createMovie(rs);
-			} else
-				return null;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
+		return getJdbcTemplate().queryForObject("SELECT * FROM MOVIES WHERE MOVIE_ID = ?",
+                (rs, row) -> createMovie(rs),
+                id);
 	}
 
 	@Override
 	public List<Movie> getByTitle(String name) {
-		List<Movie> movies = new LinkedList<Movie>();
-		Connection conn = null;
-		try {
-			conn = ds.getConnection();
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from MOVIES where MOVIE_TITLE = '" + name + "'");
-			while (rs.next()) {
-				movies.add(createMovie(rs));
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-		return movies;
+		return getJdbcTemplate().query("SELECT * FROM MOVIES WHERE MOVIE_TITLE = ?", (rs, row) -> createMovie(rs), name);
 	}
 
 	@Override

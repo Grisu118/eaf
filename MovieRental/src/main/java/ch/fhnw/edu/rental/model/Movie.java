@@ -1,6 +1,7 @@
 package ch.fhnw.edu.rental.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Movie {
 	private Long id;
@@ -52,4 +53,21 @@ public class Movie {
 		this.id = id;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Movie)) {
+			return false;
+		}
+		Movie m2 = (Movie) obj;
+        if (this.id != null && m2.id != null) {
+            return Objects.equals(this.id, m2.id);
+        } else {
+            return Objects.equals(this.title, m2.title) && Objects.equals(this.releaseDate, m2.releaseDate);
+        }
+	}
+
+	@Override
+	public int hashCode() {
+		return 31*title.hashCode() + releaseDate.hashCode();
+	}
 }

@@ -64,6 +64,7 @@ public class JdbcPriceCategoryDao extends JdbcDaoSupport implements PriceCategor
 	@Override
 	public void delete(PriceCategory priceCategory) {
 		getJdbcTemplate().update("DELETE * FROM PRICECATEGORIES WHERE PRICECATEGORY_ID = ?;", priceCategory.getId());
+        priceCategory.setId(null);
 	}
 
 }
