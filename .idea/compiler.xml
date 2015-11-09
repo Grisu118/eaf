@@ -18,14 +18,14 @@
         <processorPath useClasspath="true" />
       </profile>
       <profile default="false" name="Annotation profile for springioc.hello" enabled="true">
-        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="springioc.hello" />
       </profile>
       <profile default="false" name="Annotation profile for Lektion01" enabled="true">
-        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
@@ -33,7 +33,7 @@
       </profile>
       <profile default="false" name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Lektion02" />
@@ -41,11 +41,18 @@
         <module name="MovieRental" />
       </profile>
       <profile default="false" name="Annotation profile for Lektion08" enabled="true">
-        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Lektion08" />
+      </profile>
+      <profile default="false" name="Annotation profile for Lektion09" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Lektion09" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -53,6 +60,7 @@
       <module name="Lektion02" target="1.6" />
       <module name="Lektion05" target="1.8" />
       <module name="Lektion08" target="1.8" />
+      <module name="Lektion09" target="1.8" />
       <module name="MovieRental" target="1.8" />
       <module name="springioc.hello" target="1.6" />
     </bytecodeTargetLevel>
