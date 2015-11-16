@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/Lektion09/Lektion09.iml" filepath="$PROJECT_DIR$/Lektion09/Lektion09.iml" />
       <module fileurl="file://$PROJECT_DIR$/MovieRental/MovieRental.iml" filepath="$PROJECT_DIR$/MovieRental/MovieRental.iml" />
       <module fileurl="file://$PROJECT_DIR$/eaf.iml" filepath="$PROJECT_DIR$/eaf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userService/userService.iml" filepath="$PROJECT_DIR$/userService/userService.iml" />
     </modules>
   </component>
 </project>

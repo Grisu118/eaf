@@ -57,8 +57,6 @@
     <orderEntry type="library" name="Maven: javax.transaction:javax.transaction-api:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:1.7.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.9.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />

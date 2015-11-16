@@ -1,0 +1,1 @@
+INSERT INTO users (user_id, user_name, user_firstname, user_email) VALUES (0, 'Leber', 'Benjamin', '123@bdf.ch');
