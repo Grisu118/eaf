@@ -50,5 +50,4 @@ public class JpaCustomerDAO implements CustomerDAO {
 	public Customer manage(Customer customer) {
 		return em.merge(customer);
 	}
-
 }
