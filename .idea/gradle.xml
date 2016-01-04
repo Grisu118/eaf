@@ -4,6 +4,21 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/demo-usermanagement" />
+        <option name="gradleHome" value="D:/Gradle/wrapper/dists/gradle-2.2-bin/ca0flae0itb57he40lyj6fhpp/gradle-2.2" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/demo-usermanagement" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$/demo-usermanagement" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/userService" />
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
